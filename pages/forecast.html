@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<p>
+			<a href="#/">Back to search</a>
+		</p>
+		<h2>Forecast for {{ city }}.</h2>
+		<hr />
+		Days: 
+		<a class="btn" href="#/forecast/2" ng-class="{ 'btn btn-primary': days === '2'}">2 days</a> | 
+		<a class="btn" href="#/forecast/3" ng-class="{ 'btn btn-primary': days === '3'}">3 days</a> | 
+		<a class="btn" href="#/forecast/4" ng-class="{ 'btn btn-primary': days === '4'}">4 days</a> | 
+		<a class="btn" href="#/forecast/5" ng-class="{ 'btn btn-primary': days === '5'}">5 days</a> | 
+		<a class="btn" href="#/forecast/6" ng-class="{ 'btn btn-primary': days === '6'}">6 days</a>
+		<hr />
+	</div>
+
+</div>
+
+
+
+<div ng-repeat="w in weatherResult.list">	
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<weather-report weather-day="w" convert-to-std="convertToCelcius(daytimeTemp)" date-format="dd. MMMM - y @ h:mma Z"></weather-report>
+		</div>
+	</div>
+</div>
+</div>
+	<div class="col-md-8 col-md-offset-2" style="padding: 20px;">
+		LAT: {{ location.city.coord.lat }} LONG: {{ location.city.coord.lon }}
+</div>
+<div ng-if="!showMap">
+	<h3>{{message}}</h3>
+</div>
+<div ng-if="showMap" class="col-md-10 col-md-offset-1 embed-container">
+	<iframe ng-src="{{trustSrc('https://embed.windyty.com/?' + location.city.coord.lat + ',' + location.city.coord.lon + ',8,menu,marker')}}" width="700" height="500" frameborder="0"></iframe>
+</div>
+</div>
+	<div class="col-md-8 col-md-offset-2" style="padding: 20px;">
+		{{ city }}
+</div>
+
+<!--
+<windyty ng-if="showMap"></windyty>
+-->	
